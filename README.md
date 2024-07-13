@@ -42,6 +42,8 @@ export class AppModule {}
 
 ### Menjalankan Docker
 
+Untuk melanjutkan pada tahap selanjutnya, pastikan Docker telah terinstall terlebih dahulu.
+
 **1. Build Docker Images:**
 
 - Perintah dibawah ini akan membangun image untuk setiap service yang didefinisikan di dalam `docker-compose.yml`. 
