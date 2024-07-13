@@ -1,6 +1,17 @@
 # Tutorial Setup Project
 
-### Install Dependency
+### 1. Langkah Awal Dalam Menjalankan Project
+
+Download project kedalam bentuk zip, kemudian extract file pada direktor yang diinginkan. Setelah itu import project kedalam vscode lalu dan buka terminal. Perintah untuk masuk kedalam direktori yang benar adalah sebagai berikut.
+
+```bash
+cd shopify_rest_api-main
+cd shopify-fidela
+```
+
+Lakukan instalasi dependency apabila sudah berada pada direktori yang benar
+
+### 2. Install Dependency
 
 Sebelum menjalankan project. Install npm melalui terminal vscode. Perintah untuk melakukan instalasi pada pada line dibawah berikut.
 
@@ -40,7 +51,7 @@ export class AppModule {}
 ```
 
 
-### Menjalankan Docker
+### 3. Menjalankan Docker
 
 <b>Note: </b>Pastikan bahwa Docker telah terinstall
 
