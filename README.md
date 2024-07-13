@@ -53,7 +53,7 @@ export class AppModule {}
 
 ### 3. Menjalankan Docker
 
-<b>Note: </b>Sebelum menjalankan, Docker pastikan bahwa Docker telah terinstall. Perintah untuk membangun image serta membuat container adalah sebagai berikut.
+<b>Note: </b>Sebelum menjalankan Docker, pastikan bahwa Docker telah terinstall. Perintah untuk membangun image serta membuat container adalah sebagai berikut.
 
 **1. Build Docker Images:**
 
