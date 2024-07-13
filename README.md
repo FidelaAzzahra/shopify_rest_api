@@ -2,10 +2,16 @@
 
 ### Install Dependency
 
-Sebelum menjalankan project. Install npm melalui terminal vscode. Perintah untuk melakukan instalasi ada pada line dibawah berikut.
+Sebelum menjalankan project. Install npm melalui terminal vscode. Perintah untuk melakukan instalasi pada pada line dibawah berikut.
 
 ```bash
 npm install
+```
+
+Ketikkan `npm -v` pada terminal untuk memastikan bahwa npm telah terinstall. Apabila muncul versi dari npm pada terminal, instalasi npm dinyatakan berhasil.
+
+```bash
+npm -v
 ```
 
 ### Update Configuration
