@@ -1,0 +1,1586 @@
+{
+	"info": {
+		"_postman_id": "87db1a69-8434-479d-8749-bfcd0045f92c",
+		"name": "Shopify Rest API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33629151"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Admininstrator 1\",\r\n    \"email\": \"admin1@mail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/register",
+						"description": "\n### Register User\n\nThis endpoint allows the client to register a new user.\n\n#### Request Body\n- `name` (string, required): The name of the user.\n- `email` (string, required): The email address of the user.\n- `password` (string, required): The password for the user's account.\n\n#### Response\n- Status: 201 Created\n- Content-Type: application/json\n\n##### Response Body\n- `name` (string): The name of the registered user.\n- `email` (string): The email address of the registered user.\n- `password` (string): The password of the registered user.\n- `_id` (string): The unique identifier for the registered user.\n- `__v` (number): Version control field for the registered user.\n\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"admin@mail.com\",\r\n    \"password\": \"admin123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": "{{base_url}}/auth/logout"
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base_url}}/auth/refresh"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/admin"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "668a6dccad1c82eb554a6c97"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Admininstrator 1 Test\",\r\n    \"email\": \"admin1@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "668a6dccad1c82eb554a6c97"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "668a6dccad1c82eb554a6c97"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"body_html\": \"It's the small iPod with a big idea: Video.\",\r\n  \"handle\": \"ipod-nano\",\r\n//   \"images\": [\"66895da922241780bef96fa1\"],\r\n//   \"variants\": [\"66895cf122241780bef96f9a\"],\r\n  \"options\": {\r\n    \"name\": \"Color\",\r\n    \"values\": [\"Pink\", \"Red\", \"Green\", \"Black\"]\r\n  },\r\n  \"product_type\": \"Cult Products\",\r\n  \"status\": \"active\",\r\n  \"tags\": \"Emotive, Flash Memory, MP3, Music\",\r\n  \"template_suffix\": \"special\",\r\n  \"title\": \"IPod Nano - 8GB\",\r\n  \"vendor\": \"Apple\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/admin/api/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Get List Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/admin/api/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/admin/api/products/count"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"handle\": \"ipad-nano-test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "66896445c56fa7a7615acf44"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Variant",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"barcode\": \"1234_pink\",\r\n    \"compare_at_price\": \"299.00\",\r\n    \"created_at\": \"2012-08-24T14:01:47-04:00\",\r\n    \"fulfillment_service\": \"manual\",\r\n    \"grams\": 567,\r\n    // \"image_id\": \"434522\",\r\n    \"inventory_item_id\": 342916,\r\n    \"inventory_management\": \"shopify\",\r\n    \"inventory_policy\": \"continue\",\r\n    \"inventory_quantity\": 10,\r\n    \"old_inventory_quantity\": 5,\r\n    \"option\": {\r\n        \"option1\": \"Pink\"\r\n    },\r\n    \"presentment_prices\": {\r\n        \"presentment_prices\": [\r\n            {\r\n                \"price\": {\r\n                    \"currency_code\": \"USD\",\r\n                    \"amount\": \"199.99\"\r\n                },\r\n                \"compare_at_price\": {\r\n                    \"currency_code\": \"USD\",\r\n                    \"amount\": \"249.99\"\r\n                }\r\n            },\r\n            {\r\n                \"price\": {\r\n                    \"currency_code\": \"EUR\",\r\n                    \"amount\": \"158.95\"\r\n                },\r\n                \"compare_at_price\": {\r\n                    \"currency_code\": \"EUR\",\r\n                    \"amount\": \"198.95\"\r\n                }\r\n            },\r\n            {\r\n                \"price\": {\r\n                    \"currency_code\": \"GBP\",\r\n                    \"amount\": \"143.00\"\r\n                },\r\n                \"compare_at_price\": {\r\n                    \"currency_code\": \"GBP\",\r\n                    \"amount\": \"179.00\"\r\n                }\r\n            },\r\n            {\r\n                \"price\": {\r\n                    \"currency_code\": \"JPY\",\r\n                    \"amount\": \"22400\"\r\n                },\r\n                \"compare_at_price\": {\r\n                    \"currency_code\": \"JPY\",\r\n                    \"amount\": \"28000\"\r\n                }\r\n            }\r\n        ]\r\n    },\r\n    \"position\": 1,\r\n    \"price\": \"199.00\",\r\n    \"requires_shipping\": true,\r\n    \"sku\": \"IPOD2008PINK\",\r\n    \"taxable\": true,\r\n    \"tax_code\": \"DA040000\",\r\n    \"title\": \"Pink\",\r\n    \"updated_at\": \"2012-08-24T14:01:47-04:00\",\r\n    \"weight\": 100,\r\n    \"weight_unit\": \"oz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/variants",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"variants"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/variants",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"variants"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/variants/count",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"variants",
+								"count"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id Variant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/variants/:variant_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"variants",
+								":variant_id"
+							],
+							"variable": [
+								{
+									"key": "variant_id",
+									"value": "668a6eccad1c82eb554a6ca6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Variant",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"barcode\": \"1234_pink_test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/variants/:variant_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"variants",
+								":variant_id"
+							],
+							"variable": [
+								{
+									"key": "variant_id",
+									"value": "668964d2c56fa7a7615acf52"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/variants/:variant_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"variants",
+								":variant_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668964b8c56fa7a7615acf50"
+								},
+								{
+									"key": "variant_id",
+									"value": "668964d2c56fa7a7615acf52"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Image",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/G:/Images/icons/bank.png"
+								},
+								{
+									"key": "position",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "variant_ids",
+									"value": "[\"668a6eccad1c82eb554a6ca6\"]",
+									"type": "text"
+								},
+								{
+									"key": "width",
+									"value": "640",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "480",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "2012-03-13T16:09:58-04:00",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2012-03-13T16:09:58-04:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/images",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"images"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/images",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"images"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/images/count",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"images",
+								"count"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668a6e51ad1c82eb554a6c9e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/images/:image_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"images",
+								":image_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": ""
+								},
+								{
+									"key": "image_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "position",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "variant_ids",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "width",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/images/:image_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"images",
+								":image_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": ""
+								},
+								{
+									"key": "image_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/:product_id/images/:image_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								":product_id",
+								"images",
+								":image_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "668771dcaa822e516237b853"
+								},
+								{
+									"key": "image_id",
+									"value": "668772b2a2fd7117aba31804"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Custom Collection",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/G:/Images/icons/contacts.png"
+								},
+								{
+									"key": "body_html",
+									"value": "<p>The best selling iPods ever</p>",
+									"type": "text"
+								},
+								{
+									"key": "handle",
+									"value": "ipods",
+									"type": "text"
+								},
+								{
+									"key": "published",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "published_at",
+									"value": "2008-02-01T19:00:00-05:00",
+									"type": "text"
+								},
+								{
+									"key": "published_scope",
+									"value": "global",
+									"type": "text"
+								},
+								{
+									"key": "sort_order",
+									"value": "manual",
+									"type": "text"
+								},
+								{
+									"key": "template_suffix",
+									"value": "custom",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "IPods",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2008-02-01T19:00:00-05:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{base_url}}/admin/api/custom_collections"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/admin/api/custom_collections"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/custom_collections/:custom_collection_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"custom_collections",
+								":custom_collection_id"
+							],
+							"variable": [
+								{
+									"key": "custom_collection_id",
+									"value": "66896a3acdede15fcea2d057"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Count",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/admin/api/custom_collections/count"
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/G:/Images/icons/contacts.png"
+								},
+								{
+									"key": "body_html",
+									"value": "<p>The best selling iPods ever</p>",
+									"type": "text"
+								},
+								{
+									"key": "handle",
+									"value": "ipods",
+									"type": "text"
+								},
+								{
+									"key": "published",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "published_at",
+									"value": "2008-02-01T19:00:00-05:00",
+									"type": "text"
+								},
+								{
+									"key": "published_scope",
+									"value": "global",
+									"type": "text"
+								},
+								{
+									"key": "sort_order",
+									"value": "manual",
+									"type": "text"
+								},
+								{
+									"key": "template_suffix",
+									"value": "custom",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "IPods",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2008-02-01T19:00:00-05:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/admin/api/custom_collections/:custom_collection_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"custom_collections",
+								":custom_collection_id"
+							],
+							"variable": [
+								{
+									"key": "custom_collection_id",
+									"value": "66896a3acdede15fcea2d057"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/custom_collections/:custom_collection_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"custom_collections",
+								":custom_collection_id"
+							],
+							"variable": [
+								{
+									"key": "custom_collection_id",
+									"value": "66896a3acdede15fcea2d057"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Collect",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"collection_id\": \"6687a308bec91d4b1d6f09c2\",\r\n  \"product_id\": \"668771dcaa822e516237b853\",\r\n  \"position\": 1,\r\n  \"sort_value\": \"0000000002\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/admin/api/collects"
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/admin/api/collects"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Collect",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/collects/:collect_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"collects",
+								":collect_id"
+							],
+							"variable": [
+								{
+									"key": "collect_id",
+									"value": "668968ba9c6f847cc12dbdb7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{base_url}}/admin/api/collects/count"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/admin/api/collects/:collect_id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"collects",
+								":collect_id"
+							],
+							"variable": [
+								{
+									"key": "collect_id",
+									"value": "6687c59a7247225d7efe8c2c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seeder",
+			"item": [
+				{
+					"name": "Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/seed/:count",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"seed",
+								":count"
+							],
+							"variable": [
+								{
+									"key": "count",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/api/products/seed/:count",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"products",
+								"seed",
+								":count"
+							],
+							"variable": [
+								{
+									"key": "count",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Collection",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/admin/api/custom_collections/seed/:collection/collect/:collect",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"admin",
+								"api",
+								"custom_collections",
+								"seed",
+								":collection",
+								"collect",
+								":collect"
+							],
+							"variable": [
+								{
+									"key": "collection",
+									"value": "100"
+								},
+								{
+									"key": "collect",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Reset",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/admin/reset"
+					},
+					"response": []
+				},
+				{
+					"name": "Product Reset",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/admin/api/products/reset"
+					},
+					"response": []
+				},
+				{
+					"name": "Collection Reset",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/admin/api/custom_collections/reset"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQG1haWwuY29tIiwic3ViIjp7Il9pZCI6IjY2ODZkZjUwZjFlMGMzZTc3NDkwOTg0OCIsIm5hbWUiOiJBZG1pbmluc3RyYXRvciBUZXN0IiwiZW1haWwiOiJhZG1pbkBtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJhJDEwJFZzcHBmT3hyMUVNTlZwZHFMNnFxYXVob0ROMjJNOE1vY3JYVWxJaS5DU0NodjFmejdmMWdxIiwiX192IjowfSwiaWF0IjoxNzIwMjYyMDUwLCJleHAiOjE3MjAyNjI5NTB9.e7UiWKTWYDhmHkiuqVGuWqrxdwbtoH2xhVvjoWuMGMc"
+		},
+		{
+			"key": "refresh_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2Njg2ZGY1MGYxZTBjM2U3NzQ5MDk4NDgiLCJpYXQiOjE3MjAyNjIwNTAsImV4cCI6MTcyMDg2Njg1MH0.fqYDKICbzGf8t7dsS-urfgGgYrl0mWisyO6onX5Dseg",
+			"type": "string"
+		}
+	]
+}
