@@ -42,7 +42,7 @@ export class AppModule {}
 
 ### Menjalankan Docker
 
-Untuk melanjutkan pada tahap selanjutnya, pastikan Docker telah terinstall terlebih dahulu.
+<b>Note: </b>Pastikan bahwa Docker telah terinstall
 
 **1. Build Docker Images:**
 
